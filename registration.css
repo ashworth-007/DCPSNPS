@@ -1,0 +1,160 @@
+:root {
+  --body-color: linear-gradient(
+    90deg,
+    hsl(104, 28%, 40%) 0%,
+    hsl(58, 28%, 40%) 100%
+  );
+  --container-color: linear-gradient(
+    136deg,
+    hsl(104, 28%, 35%) 0%,
+    hsl(58, 28%, 35%) 100%
+  );
+}
+/* General resets and styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0 20px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.nav__logo-img {
+  height: 50px;
+}
+
+.nav__list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav__item {
+  margin-left: 20px;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.nav__link:hover {
+  color: #5a67d8;
+}
+
+.nav__toggle {
+  display: none;
+}
+
+.registration {
+  max-width: 800px;
+  margin: 40px auto;
+  background-color: #fff;
+  padding: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+h2 {
+  color: #4a5568;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #2d3748;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #5a67d8;
+}
+
+button[type="submit"] {
+  background-color: #5a67d8;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #4c51bf;
+}
+
+button[type="button"] {
+  background-color: #e2e8f0;
+  color: #2d3748;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="button"]:hover {
+  background-color: #cbd5e0;
+}
+
+/* Gender input styling */
+.form-radio {
+  cursor: pointer;
+}
+
+.inline-flex {
+  display: inline-flex;
+  align-items: center;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .nav__toggle {
+    display: block;
+  }
+
+  .nav__menu {
+    display: none;
+  }
+
+  .nav__menu.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background-color: #fff;
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav__item {
+    margin: 10px 0;
+  }
+}
