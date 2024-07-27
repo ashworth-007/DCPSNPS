@@ -233,15 +233,12 @@ that this website will be useful in facilitating NPS procedures.
 
 
 
-
+<!--  -->
             
             <div class="container">
                 <form action="" id="contact">
                     <h2 class="section__title about__title"><br>Contact Me</h2>
 
-
-                
-        
     
                     <div class="alert">Your message sent</div>
                     <div class="inputBox">
@@ -253,7 +250,7 @@ that this website will be useful in facilitating NPS procedures.
                     </div>
 
                   <div class="inputBox">
-            <select id="state">
+            <select id="state" onchange="populateDistricts()">
                 <option value="" disabled selected>Select your state</option>
                 <option value="Andhra Pradesh">Andhra Pradesh</option>
                 <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -285,7 +282,14 @@ that this website will be useful in facilitating NPS procedures.
                 <option value="West Bengal">West Bengal</option>
             </select>
         </div>
-        
+
+        <div class="inputBox">
+            <select id="district">
+                <option value="" disabled selected>Select your district</option>
+                
+            </select>
+        </div>
+    
                     <div class="inputBox">
                         <textarea id="msgContent" cols="30" rows="10" placeholder="Message"></textarea>
                     </div>
@@ -297,7 +301,7 @@ that this website will be useful in facilitating NPS procedures.
             </div>
         
             <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
-            <script src="./contact.js"></script>
+            <script src="./contact.js"></script> 
               
                 </form>
             </section>
