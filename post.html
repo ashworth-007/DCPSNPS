@@ -4,47 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DCPSNPS</title>
+    
     <link rel="stylesheet" href="post.css">
+    
 </head>
 <body>
     <div class="navbar">
+        <a href="#" class="nav__logo">
+            <img src="assets/logo1.png" alt="" class="nav__logo-img">
+            
+        </a>
         <div><a href="index.html">Home</a></div>
-        <div><h1>Upload Post</h1></div>
+        <div style="margin-right: 20px;"><a href="postshow.html">Show Post</a></div>
+        <div><a href="#">Logout</a></div>
+        <!-- <div><h1>Upload Post</h1></div> -->
         <div class="subnavbar">
-            <div style="margin-right: 20px;"><a href="postshow.html">Show Post</a></div>
-            <div><a href="">Logout</a></div>
+            <!-- <div style="margin-right: 20px;"><a href="postshow.html">Show Post</a></div>
+            <div><a href="#">Logout</a></div> -->
         </div>
     </div>
     <div id="app">
+        <div><h1>Upload Post</h1></div>
         <form id="post-form">
             <input type="text" id="post-title" placeholder="Post Title" required>
             <textarea id="post-content" placeholder="Write your post here..." required></textarea>
             <input type="file" id="post-image" accept="image/*" required>
             <button type="submit" id="posts">Create Post</button>
         </form>
-        <div ></div>
+        <div></div>
     </div>
-    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
 
-    
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-    <!-- Add Firebase products that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>    
+
     <script>
         // Your web app's Firebase configuration
         const firebaseConfig = {
-  apiKey: "AIzaSyDLm_yXfa58C9yCtoj4PE0YNxXgCY3RY7Q",
-  authDomain: "dcpsnps-fe479.firebaseapp.com",
-  projectId: "dcpsnps-fe479",
-  storageBucket: "dcpsnps-fe479.appspot.com",
-  messagingSenderId: "144799129608",
-  appId: "1:144799129608:web:9a030aef68f2f20293b1bd",
-  measurementId: "G-JWK7ZTTS78",
-  databaseURL: "https://dcpsnps-fe479-default-rtdb.firebaseio.com",
- 
-};
+            apiKey: "AIzaSyDLm_yXfa58C9yCtoj4PE0YNxXgCY3RY7Q",
+            authDomain: "dcpsnps-fe479.firebaseapp.com",
+            projectId: "dcpsnps-fe479",
+            storageBucket: "dcpsnps-fe479.appspot.com",
+            messagingSenderId: "144799129608",
+            appId: "1:144799129608:web:9a030aef68f2f20293b1bd",
+            measurementId: "G-JWK7ZTTS78",
+            databaseURL: "https://dcpsnps-fe479-default-rtdb.firebaseio.com",
+        };
         
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
@@ -55,19 +62,19 @@
 
         document.getElementById('post-form').addEventListener('submit', async (e) => {
             e.preventDefault();
+
             const title = document.getElementById('post-title').value;
             const content = document.getElementById('post-content').value;
             const image = document.getElementById('post-image').files[0];
             const user = auth.currentUser;
-            // Upload image to Firebase Storage
-            const storageRef = storage.ref(`images/${image.name}`);
-            await storageRef.put(image);
-            const imageUrl = await storageRef.getDownloadURL();
 
-            // Add post to Firestore
-            if (user) {
-                const email = user.email; // Use email instead of username
+            if (!user) {
+                alert('You need to be logged in to create a post');
+                window.location.href = 'login.html';
+               
+            }
 
+            try {
                 // Upload image to Firebase Storage
                 const storageRef = storage.ref(`images/${image.name}`);
                 await storageRef.put(image);
@@ -78,7 +85,7 @@
                     title: title,
                     content: content,
                     imageUrl: imageUrl,
-                    email: email, // Include user email
+                    email: user.email, // Include user email
                     userId: user.uid, // Include user ID
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
@@ -86,8 +93,9 @@
                 // Clear form
                 document.getElementById('post-form').reset();
                 alert('Post created successfully!');
-            } else {
-                alert('You need to be logged in to create a post');
+            } catch (error) {
+                console.error("Error creating post: ", error);
+                alert('Failed to create post. Please try again.');
             }
         });
     </script>
