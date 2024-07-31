@@ -1002,20 +1002,24 @@ const stateDistrictData = {
 }
 
 
+
 function populateDistricts() {
-  const stateSelect = document.getElementById('state');
-  const districtSelect = document.getElementById('district');
-  districtSelect.innerHTML = '<option value="">Select District</option>';
-  
-  const selectedState = stateSelect.value;
-  const stateObj = stateDistrictData.states.find(state => state.state === selectedState);
-  
-  if (stateObj) {
-      stateObj.districts.forEach(district => {
-          const option = document.createElement('option');
-          option.value = district;
-          option.textContent = district;
-          districtSelect.appendChild(option);
-      });
-  }
-}
+   const stateSelect = document.getElementById('state');
+   const districtSelect = document.getElementById('district');
+   districtSelect.innerHTML = '<option value="">Select District</option>';
+   
+   const selectedState = stateSelect.value;
+   const stateObj = stateDistrictData.states.find(state => state.state === selectedState);
+   
+   if (stateObj) {
+     stateObj.districts.forEach(district => {
+       const option = document.createElement('option');
+       option.value = district;
+       option.textContent = district;
+       districtSelect.appendChild(option);
+     });
+   }
+ }
+ 
+ // Attach event listener to the state select element
+ document.getElementById('state').addEventListener('change', populateDistricts);
