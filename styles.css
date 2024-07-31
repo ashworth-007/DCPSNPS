@@ -102,3 +102,9 @@
   .register-link p a:hover{
     text-decoration: underline;
   }
+
+  /* Regestraion1 */
+  .regestration{
+    margin-top:4%;
+    margin-bottom: 5%;
+  }
