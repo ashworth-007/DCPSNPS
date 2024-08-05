@@ -25,53 +25,48 @@
             <nav class="nav container">
                 <a href="#" class="nav__logo">
                     <img src="assets/logo1.png" alt="" class="nav__logo-img">
-                    
                 </a>
-
-
-
+        
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list">
                         <li class="nav__item">
                             <a href="#home" class="nav__link active-link">Home</a>
                         </li>
-
                         <li class="nav__item">
                             <a href="#about" class="nav__link">About</a>
                         </li>
-
                         <li class="nav__item">
                             <a href="#contact" class="nav__link">Contact</a>
                         </li>
                         <li class="nav__item">
-                            <a href="login.html" class="nav__link">Post</a>
+                            <a href="postshow.html" class="nav__link">Posts</a>
                         </li>
-                        <li class="nav__item">
-                            <a href="registration1.html">Registration</a>
-
+                        <li class="nav__item" id="login-nav">
+                            <a href="login.html">Login</a>
+                        </li>
+                        <li class="nav__item" id="logout-nav" style="display: none;">
+                            <a href="#" id="logout">Logout</a>
                         </li>
                         <!-- <li class="nav__item">
                             <a href="postshow.html" class="nav__link">Post</a>
                         </li>
-
-                        
-
+        
                         <a href="#" class="button button--ghost">Support</a> -->
                     </ul>
-
+        
                     <div class="nav__close" id="nav-close">
                         <i class='bx bx-x'></i>
                     </div>
-
+        
                     <img src="assets/img/nav-img.png" alt="" class="nav__img">
                 </div>
-
+        
                 <div class="nav__toggle" id="nav-toggle">
                     <i class='bx bx-grid-alt'></i>
                 </div>
-
             </nav>
         </header>
+        
 
 
 
@@ -413,7 +408,9 @@ that this website will be useful in facilitating NPS procedures.
         <script src="assets/js/swiper-bundle.min.js"></script>
         
         <!--=============== MAIN JS ===============-->
-        <script src="index.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+        <script type="module" src="index.js"></script>
     </body>
 </html>
 

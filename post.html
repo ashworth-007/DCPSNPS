@@ -1,39 +1,100 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DCPSNPS</title>
+   
+    <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="post.css">
+   
 </head>
 <body>
     <div class="navbar">
-        <a href="#" class="nav__logo">
+        <!-- <a href="#" class="nav__logo">
             <img src="assets/logo1.png" alt="" class="nav__logo-img">
         </a>
         <div><a href="index.html">Home</a></div>
-        <div style="margin-right: 20px;"><a href="postshow.html">Show Post</a></div>
-        <a href="#" onclick="logout()">Logout</a>
+        <div style="margin-right: 20px;"><a href="postshow.html">Show Post</a></div> -->
+        <header class="header" id="header">
+            <nav class="nav container">
+                <a href="#" class="nav__logo">
+                    <img src="assets/logo1.png" alt="" class="nav__logo-img">
+                    
+                </a>
+
+
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="index.html" class="nav__link active-link">Home</a>
+                        </li>
+
+                        <li class="nav__item">
+                            <a href="index.html#about" class="nav__link">About</a>
+                        </li>
+
+                        <li class="nav__item">
+                            <a href="index.html#contact" class="nav__link">Contact</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="postshow.html" class="nav__link">Posts</a>
+                        </li>
+                        <li class="nav__item" id="login-nav">
+                            <a href="login.html">Login</a>
+                        </li>
+                        <li class="nav__item" id="logout-nav" style="display: none;">
+                            <a href="#" id="logout">Logout</a>
+                        </li>
+                        <!-- <li class="nav__item">
+                            <a href="postshow.html" class="nav__link">Post</a>
+                        </li>
+
+                        
+
+                        <a href="#" class="button button--ghost">Support</a> -->
+                    </ul>
+
+                    <div class="nav__close" id="nav-close">
+                        <i class='bx bx-x'></i>
+                    </div>
+
+                    <img src="assets/img/nav-img.png" alt="" class="nav__img">
+                </div>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class='bx bx-grid-alt'></i>
+                </div>
+
+            </nav>
+        </header>
+
+
+       
     </div>
     <div id="app">
         <div><h1>Upload Post</h1></div>
         <form id="post-form">
             <input type="text" id="post-title" placeholder="Post Title" required>
-            <textarea id="post-content" placeholder="Write your post here..." required></textarea>
+            <textarea rows="50" id="post-content" placeholder="Write your post here..." required></textarea>
             <input type="file" id="post-image" accept="image/*" required>
             <button type="submit" id="posts">Create Post</button>
         </form>
     </div>
 
-    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-
-    <script>
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
+    <!-- Firebase SDKs -->
+<!--    
+ Firebase App (the core Firebase SDK) is always required and must be listed first -->
+ <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>    
+ 
+ <script>
+     // Your web app's Firebase configuration
+     const firebaseConfig = {
             apiKey: "AIzaSyDLm_yXfa58C9yCtoj4PE0YNxXgCY3RY7Q",
             authDomain: "dcpsnps-fe479.firebaseapp.com",
             projectId: "dcpsnps-fe479",
@@ -51,17 +112,40 @@
         const db = firebase.firestore();
         const storage = firebase.storage();
 
-        // Logout function
-        function logout() {
-            auth.signOut().then(() => {
-                console.log('User signed out.');
-                alert('You have been logged out.');
-                window.location.href = 'index.html';
-            }).catch((error) => {
-                console.error('Sign out error:', error);
-                alert('Failed to log out. Please try again.');
-            });
+        firebase.auth().onAuthStateChanged((user) => {
+    const loginNav = document.getElementById('login-nav');
+    const logoutNav = document.getElementById('logout-nav');
+
+    if (user) {
+        console.log('User is signed in');
+        loginNav.style.display = 'none';
+        logoutNav.style.display = 'block';
+
+        if (window.location.pathname === "/login.html" || window.location.pathname === "/") {
+            window.location.href = "postshow.html"; // Redirect authenticated users away from the login page
         }
+    } else {
+        console.log('User is signed out');
+        loginNav.style.display = 'block';
+        logoutNav.style.display = 'none';
+
+        if (window.location.pathname !== "/login.html") {
+            window.location.href = "login.html"; // Redirect unauthenticated users to the login page
+        }
+    }
+});
+
+// Logout functionality
+document.getElementById('logout')?.addEventListener('click', () => {
+    firebase.auth().signOut().then(() => {
+        console.log('User signed out.');
+        alert('You have been logged out. Redirecting to homepage.');
+        window.location.href = 'index.html';
+    }).catch((error) => {
+        console.error('Sign out error:', error);
+        alert('Failed to log out. Please try again.');
+    });
+});
 
         document.getElementById('post-form').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -78,9 +162,15 @@
             }
 
             try {
-                // Upload image to Firebase Storage
-                const storageRef = storage.ref(`images/${image.name}`);
+                // Create a reference to the file
+                // const storageRef = storage.ref(`images/${image.name}`);
+                const storageRef = firebase.storage().ref(`images/${image.name}`);
+
+
+                // Upload the file
                 await storageRef.put(image);
+
+                // Get the download URL
                 const imageUrl = await storageRef.getDownloadURL();
 
                 // Add post to Firestore
@@ -88,8 +178,8 @@
                     title: title,
                     content: content,
                     imageUrl: imageUrl,
-                    email: user.email, // Include user email
-                    userId: user.uid, // Include user ID
+                    email: user.email,
+                    userId: user.uid,
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
 
@@ -101,10 +191,12 @@
                 alert('Failed to create post. Please try again.');
             }
         });
+
+
+        
     </script>
 </body>
 </html>
- 
 
 
 
@@ -189,3 +281,4 @@
         }
     });
 </script> -->
+
