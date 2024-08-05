@@ -29,8 +29,10 @@ h3 {
   display: flex;
 }
 #app {
+ 
   width: 50%;
   margin: 50px auto;
+  margin-top: 10%;
   padding: 20px;
   background: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -38,6 +40,7 @@ h3 {
 }
 
 h1 {
+  color: #000;
   text-align: center;
 }
 
@@ -54,7 +57,7 @@ input {
 }
 textarea{
     width: 97%;
-    height: 100px;
+    height: 150px;
     margin-bottom: 10px;
     padding: 10px;
     font-size: 16px;
@@ -96,3 +99,10 @@ button.share {
   background: #28a745;
   color: white;
 }
+
+
+
+
+
+
+

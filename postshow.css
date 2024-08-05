@@ -46,7 +46,7 @@ body {
   padding: 20px;
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 }
 
@@ -145,5 +145,80 @@ body {
   .post-actions button {
       padding: 8px 10px;
       font-size: 14px;
+  }
+}
+  
+#posts-container{
+  color: black;
+  margin-top: 6%;
+}
+.post {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 480px; /* Further reduced max-width */
+  margin: 20px auto;
+  padding: 12px; /* Slightly reduced padding */
+  box-sizing: border-box;
+}
+
+.post-content {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  max-height: 280px; /* Slightly reduced max-height */
+}
+
+.post-image {
+  width: 100%;
+  height: auto;
+  max-height: 280px; /* Slightly reduced max-height */
+  object-fit: contain;
+  display: block;
+  border-bottom: 1px solid #ddd;
+}
+
+.loading-indicator {
+  display: none;
+}
+
+.post-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px; /* Slightly reduced margin-top */
+}
+
+.post-actions button {
+  background-color: #e0f7fa;
+  color: #00796b;
+  border: none;
+  padding: 6px 12px; /* Slightly reduced padding */
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.post-actions button:hover {
+  background-color: #b2dfdb;
+}
+
+.caption {
+  margin-top: 6px; /* Slightly reduced margin-top */
+  font-weight: bold;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .post {
+    width: 90%;
+    max-width: none;
+    padding: 10px; /* Slightly reduced padding */
+  }
+
+  .post-content {
+    max-height: 260px; /* Further reduced max-height for smaller screens */
   }
 }
