@@ -253,15 +253,16 @@ onAuthStateChanged(auth, (user) => {
       if (window.location.pathname === "/login.html" || window.location.pathname === "/") {
           window.location.href = "postshow.html"; // Redirect authenticated users away from the login page
       }
-  } else {
-      console.log('User is signed out');
-      loginNav.style.display = 'block';
-      logoutNav.style.display = 'none';
+  } 
+  // else {
+  //     console.log('User is signed out');
+  //     loginNav.style.display = 'block';
+  //     logoutNav.style.display = 'none';
 
-      if (window.location.pathname !== "/login.html") {
-          window.location.href = "login.html"; // Redirect unauthenticated users to the login page
-      }
-  }
+  //     if (window.location.pathname !== "/login.html") {
+  //         window.location.href = "postshow.html"; // Redirect unauthenticated users to the login page
+  //     }
+  // }
 });
 
 // Logout functionality

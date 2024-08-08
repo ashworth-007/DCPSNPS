@@ -53,15 +53,15 @@
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
               <div class="sm:col-span-3">
                 <label
-                  for="first-name"
+                  for="firstName"
                   class="block text-sm font-medium leading-6 text-gray-900"
                   >First name</label
                 >
                 <div class="mt-2">
                   <input
                     type="text"
-                    name="first-name"
-                    id="first-name"
+                    name="firstName"
+                    id="firstName"
                     autocomplete="given-name"
                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
@@ -70,15 +70,15 @@
 
               <div class="sm:col-span-3">
                 <label
-                  for="last-name"
+                  for="lastName"
                   class="block text-sm font-medium leading-6 text-gray-900"
                   >Last name</label
                 >
                 <div class="mt-2">
                   <input
                     type="text"
-                    name="last-name"
-                    id="last-name"
+                    name="lastName"
+                    id="lastName"
                     autocomplete="family-name"
                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
@@ -87,15 +87,15 @@
 
               <div class="col-span-full">
                 <label
-                  for="street-address"
+                  for="father-husband-name"
                   class="block text-sm font-medium leading-6 text-gray-900"
                   >Father/Husband Name</label
                 >
                 <div class="mt-2">
                   <input
                     type="text"
-                    name="street-address"
-                    id="street-address"
+                    name="father-husband-name"
+                    id="father-husband-name"
                     autocomplete="street-address"
                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
@@ -103,15 +103,15 @@
               </div>
               <div class="col-span-full">
                 <label
-                  for="street-address"
+                  for="mother-name"
                   class="block text-sm font-medium leading-6 text-gray-900"
                   >Mother Name</label
                 >
                 <div class="mt-2">
                   <input
                     type="text"
-                    name="street-address"
-                    id="street-address"
+                    name="mother-name"
+                    id="mother-name"
                     autocomplete="street-address"
                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
@@ -130,7 +130,7 @@
                       value="male"
                       class="form-radio h-4 w-4 text-indigo-600"
                     />
-                    <span class="ml-2 text-gray-900">Male</span>
+                    <span class="ml-2 text-gray-900 gend">Male</span>
                   </label>
                   <label for="gender-female" class="inline-flex items-center">
                     <input
@@ -140,7 +140,7 @@
                       value="female"
                       class="form-radio h-4 w-4 text-indigo-600"
                     />
-                    <span class="ml-2 text-gray-900">Female</span>
+                    <span class="ml-2 text-gray-900 gend">Female</span>
                   </label>
                   <label for="gender-other" class="inline-flex items-center">
                     <input
@@ -150,21 +150,21 @@
                       value="other"
                       class="form-radio h-4 w-4 text-indigo-600"
                     />
-                    <span class="ml-2 text-gray-900">Other</span>
+                    <span class="ml-2 text-gray-900 gend">Other</span>
                   </label>
                 </div>
               </div>
               <div class="col-span-full">
                 <label
-                  for="date-of-birth"
+                  for="dob"
                   class="block text-sm font-medium leading-6 text-gray-900"
                   >Date of Birth</label
                 >
                 <div class="mt-2">
                   <input
                     type="date"
-                    name="date-of-birth"
-                    id="date-of-birth"
+                    name="dob"
+                    id="dob"
                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -200,68 +200,35 @@
                 </div>
               </div> -->
 
-              <div class="sm:col-span-4">
-                <label
-                  for="email"
-                  class="block text-sm font-medium leading-6 text-gray-900"
-                  >Email address</label
-                >
-                <div class="mt-2">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autocomplete="email"
-                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-
+              
               <div class="col-span-full">
                 <label
-                  for="phone_number"
-                  class="block text-sm font-medium leading-6 text-gray-900"
-                  >Phone Number</label
-                >
-                <div class="mt-2">
-                  <input
-                    type="text"
-                    name="phone_number"
-                    id="phone_number"
-                    autocomplete="phone_number"
-                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-
-              <div class="col-span-full">
-                <label
-                  for="street-address"
+                  for="address1"
                   class="block text-sm font-medium leading-6 text-gray-900"
                   >Address 1</label
                 >
                 <div class="mt-2">
                   <input
                     type="text"
-                    name="street-address"
-                    id="street-address"
-                    autocomplete="street-address"
+                    name="address1"
+                    id="address1"
+                    autocomplete="address1"
                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
               <div class="col-span-full">
                 <label
-                  for="street-address2"
+                  for="address2"
                   class="block text-sm font-medium leading-6 text-gray-900"
                   >Address 2</label
                 >
                 <div class="mt-2">
                   <input
                     type="text"
-                    name="street-address2"
-                    id="street-address2"
-                    autocomplete="street-address2"
+                    name="address2"
+                    id="address2"
+                    autocomplete="address2"
                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -282,7 +249,7 @@
                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   /> -->
 
-                  <select id="state" name="state" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                  <select id="state" name="state"   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     <option value="">Select a state</option>
                   </select>
                 </div>
@@ -304,27 +271,67 @@
                   /> -->
 
                   <select id="city" name="city" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    <option value="">City</option>
+                    <option value="">Select a city</option>
                   </select>
                 </div>
               </div>
 
               <div class="sm:col-span-2">
                 <label
-                  for="postal-code"
+                  for="postalCode"
                   class="block text-sm font-medium leading-6 text-gray-900"
                   >ZIP / Postal code</label
                 >
                 <div class="mt-2">
                   <input
                     type="text"
-                    name="postal-code"
-                    id="postal-code"
+                    name="postalCode"
+                    id="postalCode"
                     autocomplete="postal-code"
                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
+
+              <div class="col-span-full">
+                <label
+                  for="phoneNumber"
+                  class="block text-sm font-medium leading-6 text-gray-900"
+                  >Phone Number</label
+                >
+                <div class="mt-2">
+                  <input
+                  type="number" id="phoneNumber" name="phoneNumber" required
+                    autocomplete="phone"
+                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+
+              <div class="sm:col-span-4">
+                <label
+                  for="email"
+                  class="block text-sm font-medium leading-6 text-gray-900"
+                  >Email address</label
+                >
+                <div class="mt-2">
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+
+
+              <div class="col-span-full">
+                <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+                <div class="mt-2">
+                    <input type="password" id="password" name="password" required autocomplete="new-password" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                </div>
+             </div>
             </div>
           </div>
 
@@ -342,7 +349,7 @@
           </button>
           <button
             type="submit"
-            class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" id="register"
           >
             Save
           </button>
@@ -350,6 +357,78 @@
       </form>
     </div>
     <script src="registration.js"></script>
-    
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+      import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
+      import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+          apiKey: "AIzaSyDLm_yXfa58C9yCtoj4PE0YNxXgCY3RY7Q",
+          authDomain: "dcpsnps-fe479.firebaseapp.com",
+          projectId: "dcpsnps-fe479",
+          storageBucket: "dcpsnps-fe479.appspot.com",
+          messagingSenderId: "144799129608",
+          appId: "1:144799129608:web:9a030aef68f2f20293b1bd",
+          measurementId: "G-JWK7ZTTS78",
+          databaseURL: "https://dcpsnps-fe479-default-rtdb.firebaseio.com",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+      const auth = getAuth();
+
+
+      document.querySelector('button[type="submit"]').addEventListener('click', (e) => {
+    e.preventDefault();  // Prevent the form from submitting
+
+    var firstName = document.getElementById('firstName').value;
+    var lastName = document.getElementById('lastName').value;
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    var phoneNumber = document.getElementById('phoneNumber').value;
+    var state = document.getElementById('state').value;
+    var city = document.getElementById('city').value;
+    var dob = document.getElementById('dob').value;
+    var postalCode = document.getElementById('postalCode').value;
+    var address1 = document.getElementById('address1').value;
+    var address2 = document.getElementById('address2').value;
+    var fatherHusbandName = document.getElementById('father-husband-name').value;
+    var motherName = document.getElementById('mother-name').value;
+    var gender = document.querySelector('input[name="gender"]:checked').value;
+
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+
+            set(ref(database, 'registrations/' + user.uid), {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password,
+                phoneNumber: phoneNumber,
+                dob: dob,
+                postalCode: postalCode,
+                state: state,
+                city: city,
+                address1: address1,
+                address2: address2,
+                fatherHusbandName: fatherHusbandName,
+                motherName: motherName,
+                gender: gender,
+            }).then(() => {
+                alert("User created successfully");
+                window.location.href = "post.html";
+            }).catch((error) => {
+                alert(error.message);
+            });
+
+        }).catch((error) => {
+            alert(error.message);
+        });
+});
+  </script>
   </body>
 </html>

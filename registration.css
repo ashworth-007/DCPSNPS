@@ -133,6 +133,15 @@ button[type="button"]:hover {
   cursor: pointer;
 }
 
+.form-radio{
+  margin-left: 8px;
+}
+
+.gend{
+  margin-top: 8px;
+  margin-left: 2px;
+}
+
 @media screen and (max-width: 768px) {
   .nav__toggle {
     display: block;

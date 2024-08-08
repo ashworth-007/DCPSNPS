@@ -46,7 +46,7 @@
                             <a href="login.html">Login</a>
                         </li>
                         <li class="nav__item" id="logout-nav" style="display: none;">
-                            <a href="#" id="logout">Logout</a>
+                            <a href="index.html" id="logout">Logout</a>
                         </li>
                         <!-- <li class="nav__item">
                             <a href="postshow.html" class="nav__link">Post</a>
@@ -124,22 +124,22 @@
         if (window.location.pathname === "/login.html" || window.location.pathname === "/") {
             window.location.href = "postshow.html"; // Redirect authenticated users away from the login page
         }
-    } else {
-        console.log('User is signed out');
-        loginNav.style.display = 'block';
-        logoutNav.style.display = 'none';
+     }  //else {
+    //     console.log('User is signed out');
+    //     loginNav.style.display = 'block';
+    //     logoutNav.style.display = 'none';
 
-        if (window.location.pathname !== "/login.html") {
-            window.location.href = "login.html"; // Redirect unauthenticated users to the login page
-        }
-    }
+    //     if (window.location.pathname !== "/login.html") {
+    //         window.location.href = "index.html"; // Redirect unauthenticated users to the login page
+    //     }
+    // }
 });
 
 // Logout functionality
 document.getElementById('logout')?.addEventListener('click', () => {
     firebase.auth().signOut().then(() => {
         console.log('User signed out.');
-        alert('You have been logged out. Redirecting to homepage.');
+        alert('You have been logged out.');
         window.location.href = 'index.html';
     }).catch((error) => {
         console.error('Sign out error:', error);

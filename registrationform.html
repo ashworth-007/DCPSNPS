@@ -51,6 +51,23 @@
          
         </div>
 
+        <div class="input-box">
+            <input type="text" placeholder="State"  id="state" name="state" required><br><br>
+            <i class='bx bx-buildings' style='color:#f7eded'  ></i>
+        </div>
+    
+    
+        <div class="input-box">
+            <input type="text" placeholder="District"  id="district" name="district" required><br><br>
+            <i class='bx bxs-city' style='color:#ffffff'  ></i>
+         </div>
+    
+    
+        <div class="input-box">
+            <input type="text"  placeholder="Subdistrict"  id="subdistrict" name="subdistrict" required><br><br>
+            <i class='bx bxs-city' style='color:#ffffff'  ></i>
+        </div>
+
         <!-- <div class="input-box">
             <input type="date" placeholder="appointment-date" id="appointment date" name="appointment date" required>
           
@@ -73,8 +90,14 @@
             <i class="fa fa-eye-slash"></i>
         </div>
 
-
         <div class="input-box">
+            <input type="tel"  placeholder="Password"  id="password" name="password" required><br><br>
+            <em class="fa fa-eye"></em>
+            <em class="fa fa-eye-slash"></em>
+        </div>
+
+
+        <!-- <div class="input-box">
             <input type="text" placeholder="Address1" id="address1" name="address1" required>
             <i class="fa fa-eye"></i>
             <i class="fa fa-eye-slash"></i>
@@ -85,7 +108,7 @@
             <input type="text" placeholder="Address2" id="address2" name="address2" required>
             <i class="fa fa-eye"></i>
             <i class="fa fa-eye-slash"></i>
-        </div>
+        </div> -->
 
 
         <button type="submit" id="register" class="btn">Register</button>
@@ -122,6 +145,8 @@
             var email = document.getElementById('email').value;
             var password = document.getElementById('password').value;
             var phone = document.getElementById('phone').value;
+            var state = document.getElementById('state').value;
+            var district = document.getElementById('district').value;
             var subdistrict = document.getElementById('subdistrict').value;
             var fatherHusbandName = document.getElementById('father-husband-name').value;
             var motherName = document.getElementById('mother-name').value;
@@ -137,6 +162,8 @@
                         email: email,
                         password: password,
                         phone: phone,
+                        state: state,
+                        district: district,
                         subdistrict: subdistrict,
                         fatherHusbandName: fatherHusbandName,
                         motherName: motherName,
