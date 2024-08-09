@@ -23,7 +23,8 @@ function submitForm(e) {
   var name = getElementVal("name");
   var emailid = getElementVal("emailid");
   var msgContent = getElementVal("msgContent");
-  var country = getElementVal("state");
+  var state = getElementVal("state");
+  var district = getElementVal("district");
   let isValid = true;
 
   if (!name) {
@@ -48,6 +49,13 @@ function submitForm(e) {
     clearError("state");
   }
 
+  if (!district) {
+   setError("district");
+   isValid = false;
+ } else {
+   clearError("district");
+ }
+
   if (!msgContent) {
     setError("msgContent");
     isValid = false;
@@ -58,7 +66,7 @@ function submitForm(e) {
     alert("Please fill in all fields.");
     return;
   }
-  saveMessages(name, emailid, msgContent, country);
+  saveMessages(name, emailid, msgContent, state, district);
  
   //   enable alert
   document.querySelector(".alert").style.display = "block";
@@ -72,14 +80,16 @@ function submitForm(e) {
   document.getElementById("contact").reset();
 }
 
-const saveMessages = (name, emailid, msgContent, country) => {
+const saveMessages = (name, emailid, msgContent, state, district) => {
   var newContactForm = contactFormDB.push();
 
   newContactForm.set({
     name: name,
     emailid: emailid,
     msgContent: msgContent,
-    country: country
+    state: state,
+    district:district,
+    timestamp: firebase.database.ServerValue.TIMESTAMP 
   });
 };
 
