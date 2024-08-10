@@ -74,6 +74,10 @@ body {
   box-sizing: border-box;
 }
 
+div.post{
+  margin-top: 35px;
+}
+
 .post-content {
   background-color: #f0f0f0;
   border: 1px solid black;
@@ -124,30 +128,7 @@ body {
   margin-top: 10px;
 }
 
-@media (max-width: 600px) {
-  .menu-items {
-      display: none;
-  }
 
-  .menu-icon {
-      display: block;
-  }
-
-  .navbar {
-      justify-content: space-between;
-  }
-
-  .post {
-      margin: 10px;
-      padding: 15px;
-  }
-
-  .post-actions button {
-      padding: 8px 10px;
-      font-size: 14px;
-  }
-}
-  
 #posts-container{
   color: black;
   margin-top: 6%;
@@ -221,4 +202,40 @@ body {
   .post-content {
     max-height: 260px; /* Further reduced max-height for smaller screens */
   }
+
+  #posts-container{
+    margin-top: 15px ;
+  }
 }
+
+@media (max-width: 600px) {
+  .menu-items {
+      display: none;
+  }
+
+  .menu-icon {
+      display: block;
+  }
+
+  .navbar {
+      justify-content: space-between;
+  }
+
+  .post {
+      margin: 10px;
+      padding: 15px;
+  }
+
+  #posts-container{
+    margin-top: 2%;
+  }
+
+  .post-actions button {
+      padding: 8px 10px;
+      font-size: 14px;
+  }
+}
+  
+
+
+
