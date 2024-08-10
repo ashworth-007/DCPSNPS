@@ -7,6 +7,36 @@
 //   });
 // });
 
+// Togle Nav Menu
+
+document.addEventListener("DOMContentLoaded", function() {
+  const navMenu = document.getElementById('nav-menu');
+  const navToggle = document.getElementById('nav-toggle');
+  const navClose = document.getElementById('nav-close');
+
+  // Show the menu when the grid icon is clicked
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.add('show-menu');
+    });
+  }
+
+  // Hide the menu when the close icon is clicked
+  if (navClose) {
+    navClose.addEventListener('click', () => {
+      navMenu.classList.remove('show-menu');
+    });
+  }
+
+  // Hide the menu when a link is clicked
+  document.querySelectorAll('.nav__link').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('show-menu');
+    });
+  });
+});
+
+
 
 // Import Firebase modules
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js';

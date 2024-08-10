@@ -6,74 +6,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DCPSNPS</title>
    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
     <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="post.css">
    
 </head>
 <body>
-    <div class="navbar">
-        <!-- <a href="#" class="nav__logo">
-            <img src="assets/logo1.png" alt="" class="nav__logo-img">
-        </a>
-        <div><a href="index.html">Home</a></div>
-        <div style="margin-right: 20px;"><a href="postshow.html">Show Post</a></div> -->
-        <header class="header" id="header">
-            <nav class="nav container">
-                <a href="#" class="nav__logo">
-                    <img src="assets/logo1.png" alt="" class="nav__logo-img">
-                    
-                </a>
-
-
-
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list">
-                        <li class="nav__item">
-                            <a href="index.html" class="nav__link active-link">Home</a>
-                        </li>
-
-                        <li class="nav__item">
-                            <a href="index.html#about" class="nav__link">About</a>
-                        </li>
-
-                        <li class="nav__item">
-                            <a href="index.html#contact" class="nav__link">Contact</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="postshow.html" class="nav__link">Posts</a>
-                        </li>
-                        <li class="nav__item" id="login-nav">
-                            <a href="login.html">Login</a>
-                        </li>
-                        <li class="nav__item" id="logout-nav" style="display: none;">
-                            <a href="index.html" id="logout">Logout</a>
-                        </li>
-                        <!-- <li class="nav__item">
-                            <a href="postshow.html" class="nav__link">Post</a>
-                        </li>
-
-                        
-
-                        <a href="#" class="button button--ghost">Support</a> -->
-                    </ul>
-
-                    <div class="nav__close" id="nav-close">
-                        <i class='bx bx-x'></i>
-                    </div>
-
-                    <img src="assets/img/nav-img.png" alt="" class="nav__img">
+   
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#" class="nav__logo">
+                <img src="assets/logo1.png" alt="" class="nav__logo-img">
+            </a>
+    
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="index.html" class="nav__link active-link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="index.html#about" class="nav__link">About</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="index.html#contact" class="nav__link">Contact</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="postshow.html" class="nav__link">Posts</a>
+                    </li>
+                    <li class="nav__item" id="login-nav">
+                        <a href="login.html">Login</a>
+                    </li>
+                    <li class="nav__item" id="logout-nav" style="display: none;">
+                        <a href="index.html" id="logout">Logout</a>
+                    </li>
+                    <!-- <li class="nav__item">
+                        <a href="postshow.html" class="nav__link">Post</a>
+                    </li>
+    
+                    <a href="#" class="button button--ghost">Support</a> -->
+                </ul>
+    
+                <div class="nav__close" id="nav-close">
+                    <i class='bx bx-x'></i>
                 </div>
+    
+                <img src="assets/img/nav-img.png" alt="" class="nav__img">
+            </div>
+    
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-grid-alt'></i>
+            </div>
+        </nav>
+    </header>
+    
 
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class='bx bx-grid-alt'></i>
-                </div>
-
-            </nav>
-        </header>
-
-
-       
-    </div>
     <div id="app">
         <div><h1>Upload Post</h1></div>
         <form id="post-form">
@@ -93,6 +81,39 @@
  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>    
  
  <script>
+
+
+//Nav menu item display 
+
+document.addEventListener("DOMContentLoaded", function() {
+    const navMenu = document.getElementById('nav-menu');
+    const navToggle = document.getElementById('nav-toggle');
+    const navClose = document.getElementById('nav-close');
+
+    // Show the menu when the grid icon is clicked
+    if (navToggle) {
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.add('show-menu');
+        });
+    }
+
+    // Hide the menu when the close icon is clicked
+    if (navClose) {
+        navClose.addEventListener('click', () => {
+            navMenu.classList.remove('show-menu');
+        });
+    }
+
+    // Hide the menu when a link is clicked
+    document.querySelectorAll('.nav__link').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('show-menu');
+        });
+    });
+});
+
+
+
      // Your web app's Firebase configuration
      const firebaseConfig = {
             apiKey: "AIzaSyDLm_yXfa58C9yCtoj4PE0YNxXgCY3RY7Q",
