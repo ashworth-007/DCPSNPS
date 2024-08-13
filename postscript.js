@@ -274,7 +274,7 @@ function sharePost(postId) {
         const shareData = {
           title: postData.title || 'Check out this post!',
           text: postData.content || '',
-          url: `${window.location.origin}/postShow.html?postId=${postId}` // URL to your post page
+          url: `${window.location.origin}/postshow.html?postId=${postId}` // URL to your post page
         };
 
         if (navigator.share) {
