@@ -266,7 +266,31 @@ function sharePost(postId) {
     return;
   }
 
-  alert('Post shared successfully!');
+  // Get the post data from Firestore
+  getDoc(doc(db, "posts", postId))
+    .then((docSnapshot) => {
+      if (docSnapshot.exists()) {
+        const postData = docSnapshot.data();
+        const shareData = {
+          title: postData.title || 'Check out this post!',
+          text: postData.content || '',
+          url: `${window.location.origin}/postShow.html?postId=${postId}` // URL to your post page
+        };
+
+        if (navigator.share) {
+          navigator.share(shareData)
+            .then(() => console.log('Post shared successfully!'))
+            .catch((error) => console.log('Error sharing post:', error));
+        } else {
+          alert('Sharing is not supported in your browser.');
+        }
+      } else {
+        console.log('Post does not exist.');
+      }
+    })
+    .catch((error) => {
+      console.error('Error getting post data:', error);
+    });
 }
 
 
@@ -308,9 +332,32 @@ document.getElementById('logout')?.addEventListener('click', async () => {
 });
 
 // Run the function on page load
-document.addEventListener('DOMContentLoaded', () => {
-  fetchPosts(); // Fetch and display posts
+// Fetch posts or a specific post based on the URL parameter
+document.addEventListener('DOMContentLoaded', async () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const postId = urlParams.get('postId'); // Get the postId from the URL if present
+
+  if (postId) {
+    // If a specific postId is provided, fetch and display that post only
+    try {
+      const docSnapshot = await getDoc(doc(db, "posts", postId));
+      if (docSnapshot.exists()) {
+        const postData = docSnapshot.data();
+        document.getElementById('posts-container').innerHTML = ''; // Clear the container
+        await renderPost(postId, postData); // Render the specific post
+      } else {
+        document.getElementById('posts-container').innerHTML = '<p>No post found.</p>';
+      }
+    } catch (error) {
+      console.error("Error fetching post:", error);
+      document.getElementById('posts-container').innerHTML = '<p>Error loading post. Check console for details.</p>';
+    }
+  } else {
+    // If no postId is provided, fetch and display all posts
+    fetchPosts(); // Fetch and display all posts
+  }
 });
+
 
 // Expose functions globally
 window.likePost = likePost;
