@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DCPSNPS</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -40,6 +42,9 @@
                     </li>
                     <li class="nav__item" id="logout-nav" style="display: none;">
                         <a href="index.html" id="logout">Logout</a>
+                    </li>
+                    <li class="nav__item" id="profile-nav" style="display: none;">
+                        <a href="profile.html" id="profile"><i class="fa-solid fa-user"></i></a>
                     </li>
                     <!-- <li class="nav__item">
                         <a href="postshow.html" class="nav__link">Post</a>
@@ -79,6 +84,7 @@
  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>    
+ <script type="module" src="index.js"></script>
  
  <script>
 
@@ -111,7 +117,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
-
 
 
      // Your web app's Firebase configuration
@@ -212,6 +217,10 @@ document.getElementById('logout')?.addEventListener('click', () => {
                 alert('Failed to create post. Please try again.');
             }
         });
+
+
+
+  
 
 
         

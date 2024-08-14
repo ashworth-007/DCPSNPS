@@ -49,11 +49,14 @@ const auth = getAuth(app);
 onAuthStateChanged(auth, (user) => {
     const loginNav = document.getElementById('login-nav');
     const logoutNav = document.getElementById('logout-nav');
+    const profileNav = document.getElementById('profile-nav');
 
     if (user) {
         console.log('User is signed in');
         loginNav.style.display = 'none';
         logoutNav.style.display = 'block';
+        profileNav.style.display = 'block';
+        
 
         if (window.location.pathname === "/login.html" || window.location.pathname === "/") {
             window.location.href = "postshow.html"; // Redirect authenticated users away from the login page
@@ -62,6 +65,8 @@ onAuthStateChanged(auth, (user) => {
         console.log('User is signed out');
         loginNav.style.display = 'block';
         logoutNav.style.display = 'none';
+        profileNav.style.display =  'none';
+
 
         if (window.location.pathname !== "/index.html") {
             window.location.href = "index.html"; // Redirect unauthenticated users to the login page

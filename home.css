@@ -768,6 +768,11 @@ button{
   }
 }
 
+.fa-user{
+  color: coral;
+  font-size: 1.5rem;
+}
+
 /* For large devices */
 @media screen and (min-width: 992px){
   .container{
