@@ -30,6 +30,11 @@ h3 {
 .subnavbar {
   display: flex;
 }
+
+.fa-user{
+  font-size: 2rem;
+  color: coral;
+}
 #app {
  
   width: 50%;

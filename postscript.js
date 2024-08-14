@@ -61,6 +61,30 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+
+
+// Check authentication state on page load
+onAuthStateChanged(auth, (user) => {
+  const loginNav = document.getElementById('login-nav');
+  const logoutNav = document.getElementById('logout-nav');
+  const profileNav = document.getElementById('profile-nav');
+
+  if (user) {
+      console.log('User is signed in');
+      loginNav.style.display = 'none';
+      logoutNav.style.display = 'block';
+      profileNav.style.display = 'block';
+      
+  } else {
+      console.log('User is signed out');
+      loginNav.style.display = 'block';
+      logoutNav.style.display = 'none';
+      profileNav.style.display =  'none';
+  }
+});
+
+
+
 // Fetch posts from Firestore and render them
 async function fetchPosts() {
   try {
