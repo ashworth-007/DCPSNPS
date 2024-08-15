@@ -58,9 +58,9 @@ onAuthStateChanged(auth, (user) => {
         profileNav.style.display = 'block';
         
 
-        if (window.location.pathname === "/login.html" || window.location.pathname === "/") {
-            window.location.href = "postshow.html"; // Redirect authenticated users away from the login page
-        }
+        // if (window.location.pathname === "/login.html" || window.location.pathname === "/") {
+        //     window.location.href = "postshow.html"; // Redirect authenticated users away from the login page
+        // }
     } else {
         console.log('User is signed out');
         loginNav.style.display = 'block';
