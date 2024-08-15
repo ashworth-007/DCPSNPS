@@ -121,6 +121,7 @@ button.share {
 
   #app{
     margin-top: 17%;
+    width: 65%;
   }
 }
 
@@ -128,6 +129,7 @@ button.share {
 
   #app{
     margin-top: 19%;
+    width: 75%;
   }
 }
 
@@ -136,6 +138,7 @@ button.share {
 @media screen and (max-width: 415px) {
 
   #app{
+    width: 75%;
     margin-top: 23%;
   }
 }

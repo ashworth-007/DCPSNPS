@@ -223,11 +223,14 @@ div.post{
 
   .post {
       margin: 10px;
-      padding: 15px;
+    
+      margin-left: 2rem;
+     
   }
 
   #posts-container{
     margin-top: 2%;
+    padding-right: 2rem;
   }
 
   .post-actions button {
