@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // Import Firebase modules
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js';
 import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js';
-import { getFirestore, collection, getDocs, doc, updateDoc, getDoc, setDoc, query, where, runTransaction } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js';
+import { getFirestore, collection, getDocs, doc, updateDoc, getDoc, setDoc, query, where, runTransaction, orderBy } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -68,6 +68,7 @@ onAuthStateChanged(auth, (user) => {
   const loginNav = document.getElementById('login-nav');
   const logoutNav = document.getElementById('logout-nav');
   const profileNav = document.getElementById('profile-nav');
+  
 
   if (user) {
       console.log('User is signed in');
@@ -83,31 +84,37 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-
-
-// Fetch posts from Firestore and render them
+// Function to fetch posts
 async function fetchPosts() {
   try {
     const postsContainer = document.getElementById('posts-container');
     postsContainer.innerHTML = ''; // Clear any existing posts
+    console.log("Fetching posts...");
 
+    // Use the collection and query functions from Firestore
     const postsCollection = collection(db, "posts");
-    const querySnapshot = await getDocs(postsCollection);
+    const postsQuery = query(postsCollection, orderBy("createdAt", "desc"));
+
+    const querySnapshot = await getDocs(postsQuery);
+    console.log("Query Snapshot:", querySnapshot);
 
     if (querySnapshot.empty) {
+      console.log("No posts found.");
       postsContainer.innerHTML = '<p>No posts available.</p>';
     } else {
-      for (const docSnapshot of querySnapshot.docs) {
-        const postId = docSnapshot.id;
-        const postData = docSnapshot.data();
-        await renderPost(postId, postData);
-      }
+      querySnapshot.forEach((doc) => {
+        const postId = doc.id;
+        const postData = doc.data();
+        console.log("Post Data:", postId, postData);
+        renderPost(postId, postData);
+      });
     }
   } catch (error) {
     console.error("Error fetching posts:", error);
     document.getElementById('posts-container').innerHTML = '<p>Error fetching posts. Check console for details.</p>';
   }
 }
+
 
 // Render a single post
 async function renderPost(postId, postData) {
@@ -140,6 +147,7 @@ async function renderPost(postId, postData) {
       </div>
       <div>
         <button class="share-button" onclick="sharePost('${postId}')"><i class='bx bxs-share'></i></button>
+        
         <button class="save-button" onclick="savePost('${postId}')"><i class='bx bxs-save'></i></button>
       </div>
     </div>
@@ -276,11 +284,49 @@ async function dislikePost(postId) {
   }
 }
 
-// Function to save a post
-function savePost(postId) {
-  // Implement your save logic here
-  alert('Post saved successfully!');
+
+
+// Function to save a post to the user's saved posts in Firestore
+async function savePost(postId) {
+  const currentUser = auth.currentUser;
+  if (!currentUser) {
+    alert('Please log in to save this post.');
+    return;
+  }
+
+  try {
+    const savedPostsRef = doc(db, 'savedPosts', currentUser.uid);
+    const savedPostsDoc = await getDoc(savedPostsRef);
+
+    if (savedPostsDoc.exists()) {
+      const savedPostsData = savedPostsDoc.data();
+      if (savedPostsData.savedPosts && savedPostsData.savedPosts[postId]) {
+        alert('This post is already saved.');
+        return;
+      }
+    }
+
+    // Add or update the postId in the user's saved posts
+    await setDoc(savedPostsRef, {
+      savedPosts: {
+        [postId]: {
+          postId: postId,
+          timestamp: new Date() // Optional: store the time when the post was saved
+        }
+      }
+    }, { merge: true });
+
+    alert('Post saved successfully!');
+  } catch (error) {
+    console.error('Failed to save the post:', error);
+    alert('Failed to save the post. Check console for details.');
+  }
 }
+
+
+
+
+
 
 // Function to share a post
 function sharePost(postId) {
