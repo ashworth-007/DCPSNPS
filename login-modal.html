@@ -1,0 +1,201 @@
+<style>
+    
+
+/* // Login css */
+
+/* Modal background */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 9999; /* High z-index to ensure it appears above other content */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  
+  backdrop-filter: blur(5px); /* Apply blur effect to the background */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal content */
+.modal-content {
+  background-color: #fff;
+  margin: auto;
+  padding: 30px; /* Increased padding */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 95%; /* Increased width */
+  max-width: 500px; /* Increased max-width */
+  height: auto; /* Automatic height adjustment */
+  max-height: 600px; /* Optional: limit the height */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Close button */
+.close {
+  color: #333;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+}
+
+/* Header styles */
+.modal-content h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center; /* Centered heading */
+  margin-bottom: 20px; /* Space below heading */
+}
+
+/* Input styles */
+.input-box {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 10px 40px 10px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.input-box i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #888;
+}
+
+/* Button styles */
+.btn {
+  display: inline-block;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  background-color:  #5a67d8;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color:  #5a67d8;
+}
+
+/* Remember me and forgot password styles */
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.remember-forgot label {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.remember-forgot a {
+  font-size: 0.9rem;
+  color:  #5a67d8;
+  text-decoration: none;
+}
+
+.remember-forgot a:hover {
+  text-decoration: underline;
+}
+
+/* Register link styles */
+.register-link {
+  text-align: center;
+}
+
+.register-link p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.register-link a {
+  color:  #5a67d8;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+  
+</style>
+
+
+<!-- modal.html -->
+
+
+<div id="loginModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h1>Login</h1>
+        <div class="input-box">
+            <input type="text" id="modalEmail" placeholder="Email" required />
+            <i class="bx bxs-user"></i>
+        </div>
+        <div class="input-box">
+            <input type="password" id="modalPassword" placeholder="Password" required />
+            <i class="bx bxs-lock-alt"></i>
+        </div>
+        <div class="remember-forgot">
+            <label><input type="checkbox" id="rememberMe" />&nbsp; Remember Me</label>
+            <a href="#">Forgot Password</a>
+        </div>
+        <button type="submit" id="modalLogin" class="btn">Login</button>
+        <div class="register-link">
+            <p>Don't have an account? <a href="registration.html">Registration</a></p>
+        </div>
+    </div>
+</div>
+
+
+<!-- forgot-modal -->
+
+<div id="forgotPasswordModal" class="modal" style="display: none;">
+  <div class="modal-content">
+      <span class="close" id="closeForgotModal">&times;</span>
+      <h1>Reset Your Password</h1>
+      <div class="input-box">
+          <input type="email" id="forgotEmail" placeholder="Email" required />
+          <i class="bx bx-envelope"></i>
+      </div>
+      <button type="submit" id="resetPassword" class="btn">Send Reset Email</button>
+      <div class="register-link">
+          <p>Remembered your password? <a href="#" id="backToLogin">Login</a></p>
+      </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js"></script>
+   <script type="module" src="forgot.js"></script>

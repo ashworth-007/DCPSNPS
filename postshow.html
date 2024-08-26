@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="home.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 </head>
+
 <body>
 
   <header class="header" id="header">
@@ -23,12 +24,14 @@
               <li class="nav__item"><a href="index.html#about" class="nav__link">About</a></li>
               <li class="nav__item"><a href="index.html#contact" class="nav__link">Contact</a></li>
               <li class="nav__item"><a href="postshow.html" class="nav__link">Posts</a></li>
-              <li class="nav__item" id="savedPost-nav" >
-                <a href="savedPost.html" id="savedPost">Saved Posts</a>
-            </li>
-              <li class="nav__item"><a href="login.html"><i class="fas fa-edit"></i> Upload Post</a></li>
-             <li class="nav__item" id="login-nav"><a href="login.html" id="auth-link"> Login</a></li> 
-              <!-- <li class="nav__item" id="logout-nav" style="display: none;"><a href="index.html" id="logout" style="display: none;"><i class="fas fa-sign-out-alt"></i> Logout</a></li> -->
+              
+              <li class="nav__item">
+                <a href="#" id="upload-post-link" class="nav__link">
+                    <i class="fas fa-edit"></i> Upload Post
+                </a>
+              </li>
+            
+              <li class="nav__item" id="login-nav"><a href="#" id="auth-link"> Login</a></li>
               <li class="nav__item" id="logout-nav" style="display: none;">
                 <a href="index.html" id="logout">Logout</a>
             </li>
@@ -51,11 +54,15 @@
   <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
 
- 
-
   <!-- Import the JavaScript file as a module -->
+   <script type="module" src="login-modal.js"></script>
+  <script type="module" src="postscript.js"></script>
    
-<script type="module" src="postscript.js"></script>
+
+  
+
+  
+   
 
 </body>
 </html>

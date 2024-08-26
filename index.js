@@ -85,3 +85,67 @@ document.getElementById('logout')?.addEventListener('click', async () => {
         alert('Failed to log out.');
     }
 });
+
+
+// JS for login modal
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
+import { getDatabase } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+// Initialize Firebase
+const database = getDatabase(app);
+
+// Check authentication state on page load
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        console.log('User is signed in');
+        if (window.location.pathname === "/login.html" || window.location.pathname === "/") {
+            window.location.href = "post.html"; // Redirect authenticated users away from the login page
+        }
+    } else {
+        console.log('User is signed out');
+        
+    }
+});
+
+// Handle login button click (modal)
+document.getElementById('modalLogin')?.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('modalEmail').value;
+    const password = document.getElementById('modalPassword').value;
+
+    if (email === '' || password === '') {
+        alert('Please enter both email and password.');
+        return;
+    }
+
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        console.log('Login successful:', user);
+        alert('Login successful');
+        window.location.href = "index.html";
+    } catch (error) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error('Login failed:', errorCode, errorMessage);
+        alert('Login failed: ' + errorMessage);
+    }
+});
+
+// Handle logout button click
+document.getElementById("logout")?.addEventListener("click", async (e) => {
+    e.preventDefault();
+    try {
+        await signOut(auth);
+        console.log("Sign-out successful.");
+        alert("Sign-out successful.");
+        window.location.href = "index.html";
+    } catch (error) {
+        console.error("Sign-out error:", error.message);
+    }
+});
+
+

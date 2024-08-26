@@ -49,7 +49,7 @@
                         <a href="postshow.html" class="nav__link">Posts</a>
                     </li>
 
-                    <li class="nav__item"><a href="login.html"><i class="fas fa-edit"></i> Upload Post</a></li>
+                    <li class="nav__item"><a href="post.html"><i class="fas fa-edit"></i> Upload Post</a></li>
                     
                     <li class="nav__item" id="logout-nav" >
                         <a href="index.html" id="logout">Logout</a>
@@ -203,8 +203,8 @@ document.addEventListener("DOMContentLoaded", function() {
                                     <span class="info-value">${userData.address2}</span>
                                 </div>
                                 <div class="info-item">
-                                    <span class="info-label">City:</span>
-                                    <span class="info-value">${userData.city}</span>
+                                    <span class="info-label">District:</span>
+                                    <span class="info-value">${userData.district}</span>
                                 </div>
                                 <div class="info-item">
                                     <span class="info-label">State:</span>
@@ -254,7 +254,7 @@ onAuthStateChanged(auth, (user) => {
         loginNav.style.display = 'none';
         logoutNav.style.display = 'block';
 
-        if (window.location.pathname === "/login.html" || window.location.pathname === "/") {
+        if (window.location.pathname === "/index.html" || window.location.pathname === "/") {
             window.location.href = "postshow.html"; // Redirect authenticated users away from the login page
         }
     } else {

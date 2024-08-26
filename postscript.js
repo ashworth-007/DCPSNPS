@@ -116,6 +116,36 @@ async function fetchPosts() {
 }
 
 
+//get username
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+// Initialize Firebase Realtime Database
+const database = getDatabase();
+
+// Function to get the user's name using their userId
+async function getUserName(userId) {
+  try {
+    const userRef = ref(database, 'registrations/' + userId);
+    const userSnapshot = await get(userRef);
+
+    if (userSnapshot.exists()) {
+      const userData = userSnapshot.val();
+      console.log('User Data:', userData); // Log user data for debugging
+
+      const fullName = `${userData.firstName || ''} ${userData.lastName || ''}`.trim();
+      return fullName || 'Anonymous';
+    } else {
+      console.log('User does not exist.');
+      return 'Anonymous';
+    }
+  } catch (error) {
+    console.error('Error fetching user name:', error);
+    return 'Anonymous';
+  }
+}
+
+
+
 // Render a single post
 async function renderPost(postId, postData) {
   const postsContainer = document.getElementById('posts-container');
@@ -129,11 +159,13 @@ async function renderPost(postId, postData) {
     userAction = await getUserAction(postId);
   }
 
+  const userName = await getUserName(postData.userId); // Fetch the user's name using their userId
+
   postDiv.innerHTML = `
     <div class="displayname">
       <div class="box1">
         <div class="person-icon"><i class='bx bxs-user'></i></div>
-        <div class="user-name">${postData.email || 'Anonymous'}</div>
+        <div class="user-name">${userName || 'Anonymous'}</div>
       </div>
       <div class="menu-icon"><i class='bx bx-dots-horizontal-rounded'></i></div>
     </div>
@@ -147,7 +179,6 @@ async function renderPost(postId, postData) {
       </div>
       <div>
         <button class="share-button" onclick="sharePost('${postId}')"><i class='bx bxs-share'></i></button>
-        
         <button class="save-button" onclick="savePost('${postId}')"><i class='bx bxs-save'></i></button>
       </div>
     </div>
@@ -286,40 +317,40 @@ async function dislikePost(postId) {
 
 
 
-// Function to save a post to the user's saved posts in Firestore
+// Function to save a post to the user's saved posts in Firestore   BLOB
 async function savePost(postId) {
-  const currentUser = auth.currentUser;
+  const currentUser = auth.currentUser; 
   if (!currentUser) {
-    alert('Please log in to save this post.');
-    return;
+      alert('Please log in to save this post.');
+      return;
   }
 
   try {
-    const savedPostsRef = doc(db, 'savedPosts', currentUser.uid);
-    const savedPostsDoc = await getDoc(savedPostsRef);
-
-    if (savedPostsDoc.exists()) {
-      const savedPostsData = savedPostsDoc.data();
-      if (savedPostsData.savedPosts && savedPostsData.savedPosts[postId]) {
-        alert('This post is already saved.');
-        return;
+      const postRef = doc(db, 'posts', postId);
+      const postDoc = await getDoc(postRef);
+      if (!postDoc.exists()) {
+          alert('Post not found.');
+          return;
       }
-    }
+      const postData = postDoc.data();
+      const imageUrl = postData.imageUrl;
 
-    // Add or update the postId in the user's saved posts
-    await setDoc(savedPostsRef, {
-      savedPosts: {
-        [postId]: {
-          postId: postId,
-          timestamp: new Date() // Optional: store the time when the post was saved
-        }
+      if (!imageUrl) {
+          alert('No image URL found for this post.');
+          return;
       }
-    }, { merge: true });
 
-    alert('Post saved successfully!');
+      const link = document.createElement('a');
+      link.href = imageUrl;
+      link.download = `post-${postId}.jpg`; // Specify the name for the downloaded file
+      document.body.appendChild(link);
+      link.click(); // Trigger the download
+      document.body.removeChild(link); // Clean up by removing the link
+
+      // alert('Image download started!');
   } catch (error) {
-    console.error('Failed to save the post:', error);
-    alert('Failed to save the post. Check console for details.');
+      console.error('Error downloading image:', error);
+      alert('Failed to download the image. Check console for details.');
   }
 }
 
@@ -426,6 +457,35 @@ document.addEventListener('DOMContentLoaded', async () => {
     // If no postId is provided, fetch and display all posts
     fetchPosts(); // Fetch and display all posts
   }
+
+
+  // post.html nav
+  const uploadPostLink = document.getElementById('upload-post-link');
+  const loginNav = document.getElementById('auth-link');
+  const modal = document.getElementById('loginModal');
+  const closeModal = document.querySelector('#loginModal .close');
+
+  uploadPostLink.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevent the default link behavior
+    console.log("clicked in post")
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        window.location.href = "post.html";
+      } else {
+        if (modal) {
+          modal.style.display = 'flex';
+        } else {
+          alert('Login is mandatory to Upload Post');
+        }
+      }
+    });
+  });
+
+  window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
 });
 
 
