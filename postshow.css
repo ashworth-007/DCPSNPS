@@ -65,118 +65,49 @@ body {
 
 .post {
   background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  width: 100%;
-  margin: 20px 0;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-div.post{
-  margin-top: 35px;
-}
-
-.post-content {
-  background-color: #f0f0f0;
-  border: 1px solid black;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.post-image {
-  max-width: 100%;
-  max-height: 200px;
-  object-fit: cover;
-}
-
-.post-actions {
-  display: flex;
-  justify-content: space-between;
-}
-
-.post-actions button {
-  background-color: #8AD6E4;
-  color: black;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.post-actions button:hover {
-  background-color: #0056b3;
-}
-
-.displayname {
-  display: flex;
-  justify-content: space-between;
-}
-
-.displayname .box1 {
-  display: flex;
-  margin-right: 30px;
-}
-
-.caption {
-  margin-top: 10px;
-}
-
-
-#posts-container{
-  color: black;
-  margin-top: 6%;
-}
-.post {
-  background: white;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 480px; /* Further reduced max-width */
-  margin: 20px auto;
-  padding: 12px; /* Slightly reduced padding */
+  margin: 3.5rem auto;
+  padding: 12px;
   box-sizing: border-box;
 }
 
 .post-content {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  width: 100%;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  height: 250px; /* Adjust as needed */
   background-color: #f9f9f9;
+  overflow: hidden; /* Hide overflow to prevent image clipping */
   border: 1px solid #ddd;
   border-radius: 4px;
-  overflow: hidden;
-  position: relative;
-  max-height: 280px; /* Slightly reduced max-height */
 }
 
 .post-image {
-  width: 100%;
-  height: auto;
-  max-height: 280px; /* Slightly reduced max-height */
-  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Keeps aspect ratio */
   display: block;
-  border-bottom: 1px solid #ddd;
+  margin: auto; /* Center the image */
 }
 
-.loading-indicator {
-  display: none;
-}
 
 .post-actions {
   display: flex;
   justify-content: space-between;
-  margin-top: 8px; /* Slightly reduced margin-top */
+  margin-top: 10px; /* Add space above to separate from content */
 }
 
 .post-actions button {
   background-color: #e0f7fa;
   color: #00796b;
   border: none;
-  padding: 6px 12px; /* Slightly reduced padding */
+  padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -186,59 +117,75 @@ div.post{
   background-color: #b2dfdb;
 }
 
+.displayname {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Align items vertically */
+  margin-bottom: 10px; /* Add space below if needed */
+}
+
+.displayname .box1 {
+  display: flex;
+  align-items: center; /* Vertically center content */
+  margin-right: 30px;
+}
+
 .caption {
-  margin-top: 6px; /* Slightly reduced margin-top */
+  margin-top: 6px; /* Adjust margin-top */
   font-weight: bold;
   color: #333;
+}
+
+#posts-container {
+  color: black;
+  margin-top: 6%;
+}
+
+.loading-indicator {
+  display: none;
 }
 
 @media (max-width: 768px) {
   .post {
     width: 90%;
     max-width: none;
-    padding: 10px; /* Slightly reduced padding */
+    padding: 10px; /* Adjust padding for smaller screens */
   }
 
   .post-content {
     max-height: 260px; /* Further reduced max-height for smaller screens */
   }
 
-  #posts-container{
-    margin-top: 15px ;
+  #posts-container {
+    margin-top: 15px;
   }
 }
 
 @media (max-width: 600px) {
   .menu-items {
-      display: none;
+    display: none;
   }
 
   .menu-icon {
-      display: block;
+    display: block;
   }
 
   .navbar {
-      justify-content: space-between;
+    justify-content: space-between;
   }
 
   .post {
-      margin: 10px;
-    
-      margin-left: 2rem;
-     
+    margin: 10px;
+    margin-left: 2rem;
   }
 
-  #posts-container{
+  #posts-container {
     margin-top: 2%;
     padding-right: 2rem;
   }
 
   .post-actions button {
-      padding: 8px 10px;
-      font-size: 14px;
+    padding: 8px 10px;
+    font-size: 14px;
   }
 }
-  
-
-
-
