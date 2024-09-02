@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js';
 import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js';
 import { getFirestore, collection, getDocs, doc, updateDoc, getDoc, setDoc, query, where, runTransaction, orderBy } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js';
+import { documentId } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -89,29 +90,50 @@ async function fetchPosts() {
   try {
     const postsContainer = document.getElementById('posts-container');
     postsContainer.innerHTML = ''; // Clear any existing posts
-    console.log("Fetching posts...");
+    
 
-    // Use the collection and query functions from Firestore
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('postId');
     const postsCollection = collection(db, "posts");
-    const postsQuery = query(postsCollection, orderBy("createdAt", "desc"));
+    let postsQuery;
+
+    if (postId) {
+      // Fetch specific post
+      const specificPostDoc = doc(db, "posts", postId);
+      const specificPostSnapshot = await getDoc(specificPostDoc);
+      if (specificPostSnapshot.exists()) {
+        const specificPostData = specificPostSnapshot.data();
+        await renderPost(postId, specificPostData);
+      } else {
+        postsContainer.innerHTML = 'No post found.';
+      }
+
+      // Fetch other posts
+      postsQuery = query(postsCollection, where(documentId(), '!=', postId), orderBy("createdAt", "desc"));
+    } else {
+      // Fetch all posts
+      postsQuery = query(postsCollection, orderBy("createdAt", "desc"));
+    }
 
     const querySnapshot = await getDocs(postsQuery);
-    console.log("Query Snapshot:", querySnapshot);
+  
 
     if (querySnapshot.empty) {
       console.log("No posts found.");
-      postsContainer.innerHTML = '<p>No posts available.</p>';
+      if (!postId) {
+        postsContainer.innerHTML = 'No posts available.';
+      }
     } else {
       querySnapshot.forEach((doc) => {
         const postId = doc.id;
         const postData = doc.data();
-        console.log("Post Data:", postId, postData);
+       
         renderPost(postId, postData);
       });
     }
   } catch (error) {
     console.error("Error fetching posts:", error);
-    document.getElementById('posts-container').innerHTML = '<p>Error fetching posts. Check console for details.</p>';
+    document.getElementById('posts-container').innerHTML = '... Error fetching posts. Check console for details.';
   }
 }
 
@@ -130,7 +152,7 @@ async function getUserName(userId) {
 
     if (userSnapshot.exists()) {
       const userData = userSnapshot.val();
-      console.log('User Data:', userData); // Log user data for debugging
+     // Log user data for debugging
 
       const fullName = `${userData.firstName || ''} ${userData.lastName || ''}`.trim();
       return fullName || 'Anonymous';
@@ -401,7 +423,7 @@ onAuthStateChanged(auth, (user) => {
   const logoutNav = document.getElementById('logout-nav');
 
   if (user) {
-      console.log('User is signed in');
+     
       loginNav.style.display = 'none';
       logoutNav.style.display = 'block';
 
