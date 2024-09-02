@@ -1,7 +1,3 @@
-
-
-
-
 document.addEventListener('DOMContentLoaded', async () => {
     // Fetch and inject modal HTML
     const modalContainer = document.createElement('div');
@@ -17,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Dynamically import Firebase modules
     const { initializeApp } = await import("https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js");
-    const { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, signOut } = await import("https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js");
+    const { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, signOut, fetchSignInMethodsForEmail } = await import("https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js");
     const { getDatabase } = await import("https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js");
 
     const firebaseConfig = {
@@ -125,22 +121,34 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Handle password reset
     resetPasswordBtn?.addEventListener('click', async (e) => {
         e.preventDefault();
-        const email = document.getElementById('forgotEmail').value;
+    const email = document.getElementById('forgotEmail').value.trim(); // Trim any whitespace
 
-        if (email === '') {
-            alert('Please enter your email address.');
-            return;
-        }
+    if (email === '') {
+        alert('Please enter your email address.');
+        return;
+    }
 
-        try {
-            await sendPasswordResetEmail(auth, email);
-            alert('Password reset email sent successfully!');
-            forgotPasswordModal.style.display = 'none';
-            loginModal.style.display = 'flex';
-        } catch (error) {
-            console.error('Error sending password reset email:', error);
-            alert('Error: ' + error.message);
-        }
+    console.log('Attempting to reset password for:', email);
+
+    try {
+        // Check if the email is registered
+        // const signInMethods = await fetchSignInMethodsForEmail(auth, email);
+        // console.log('Sign-in methods for email:', signInMethods);
+
+        // if (signInMethods.length === 0) {
+        //     alert('This email address is not registered. Please check and try again.');
+        //     return;
+        // }
+
+        // If the email is registered, send the password reset email
+        await sendPasswordResetEmail(auth, email);
+        alert('Password reset email sent successfully!');
+        forgotPasswordModal.style.display = 'none';
+        loginModal.style.display = 'flex';
+    } catch (error) {
+        console.error('Error sending password reset email:', error);
+        alert('Error: ' + error.message);
+    }
     });
 
     // Handle logout button click
