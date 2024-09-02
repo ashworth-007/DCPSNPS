@@ -113,9 +113,36 @@ body {
   transition: background-color 0.3s;
 }
 
+
+
 .post-actions button:hover {
   background-color: #b2dfdb;
 }
+
+
+/*delete and edit button */
+ .fa-edit{
+  margin-right: 0.2rem;
+ }
+
+
+.post-actions-right {
+  display: flex;
+  gap: 10px; /* Space between icons */
+}
+
+.post-actions-right i {
+  font-size: 20px; /* Adjust size as needed */
+  color: #333; /* Icon color */
+  cursor: pointer; /* Show pointer cursor on hover */
+  transition: color 0.3s; /* Smooth color transition */
+}
+
+.post-actions-right i:hover {
+  color: #00796b; /* Change color on hover */
+}
+
+
 
 .displayname {
   display: flex;
