@@ -140,7 +140,7 @@ function editPost(postId) {
   
     const userAction = await getUserAction(postId);
     const userName = await getUserName(postData.userId);
-  
+    // <i class="fas fa-edit" onclick="editPost('${postId}')"></i>
     postDiv.innerHTML = `
           <div class="displayname">
               <div class="box1">
@@ -148,7 +148,7 @@ function editPost(postId) {
                   <div class="user-name">${userName || "Anonymous"}</div>
               </div>
               <div class="post-actions-right">
-                  <i class="fas fa-edit" onclick="editPost('${postId}')"></i>
+                  
                   <i class="fas fa-trash" onclick="deletePost('${postId}')"></i>
               </div>
               <div class="menu-icon">
