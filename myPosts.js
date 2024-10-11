@@ -91,10 +91,10 @@ function editPost(postId) {
         const postIdInput = document.getElementById("edit-post-id");
         const postTitleInput = document.getElementById("edit-post-title");
         const postContentInput = document.getElementById("edit-post-content");
-        const postImageInput = document.getElementById("edit-post-image");
+        // const postImageInput = document.getElementById("edit-post-image");
   
         // Check if elements are found
-        if (!postIdInput || !postTitleInput || !postContentInput || !postImageInput) {
+        if (!postIdInput || !postTitleInput || !postContentInput) {
           console.error("One or more form elements are missing.");
           return;
         }
@@ -103,7 +103,7 @@ function editPost(postId) {
         postIdInput.value = postId;
         postTitleInput.value = postData.title || "";
         postContentInput.value = postData.content || "";
-        postImageInput.value = postData.imageUrl || "";
+        // postImageInput.value = postData.imageUrl || "";
   
         // Show the modal
         document.getElementById("edit-modal").style.display = "block";
@@ -140,7 +140,7 @@ function editPost(postId) {
   
     const userAction = await getUserAction(postId);
     const userName = await getUserName(postData.userId);
-    // <i class="fas fa-edit" onclick="editPost('${postId}')"></i>
+    
     postDiv.innerHTML = `
           <div class="displayname">
               <div class="box1">
@@ -148,7 +148,7 @@ function editPost(postId) {
                   <div class="user-name">${userName || "Anonymous"}</div>
               </div>
               <div class="post-actions-right">
-                  
+                  <i class="fas fa-edit" onclick="editPost('${postId}')"></i>
                   <i class="fas fa-trash" onclick="deletePost('${postId}')"></i>
               </div>
               <div class="menu-icon">
@@ -185,11 +185,7 @@ function editPost(postId) {
     }
   }
 
-  
-// Handle image loading error
-function handleImageError(image) {
-  image.src = "default-image.jpg"; // Replace with your default image path
-}
+
 
 // Function to get the user's action on a post
 async function getUserAction(postId) {

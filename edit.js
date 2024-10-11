@@ -1,6 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
 import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-storage.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDLm_yXfa58C9yCtoj4PE0YNxXgCY3RY7Q",
@@ -16,7 +15,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const storage = getStorage(app);
 
 // Function to show the edit modal
 export function openEditModal(postId) {
@@ -27,18 +25,6 @@ export function openEditModal(postId) {
             document.getElementById("edit-post-id").value = postId;
             document.getElementById("edit-post-title").value = postData.title || "";
             document.getElementById("edit-post-content").value = postData.content || "";
-            
-            const imageUrl = postData.imageUrl || "";
-            const imagePreview = document.getElementById("edit-post-image-preview");
-            if (imagePreview) {
-                if (imageUrl) {
-                    imagePreview.src = imageUrl;
-                    imagePreview.style.display = "block";
-                } else {
-                    imagePreview.style.display = "none";
-                }
-            }
-            
             document.getElementById("edit-modal").style.display = "block";
         } else {
             alert("Post not found.");
@@ -59,30 +45,14 @@ document.getElementById("edit-post-form").addEventListener("submit", async (even
     const postId = document.getElementById("edit-post-id").value;
     const title = document.getElementById("edit-post-title").value;
     const content = document.getElementById("edit-post-content").value;
-    const newImageFile = document.getElementById("edit-post-image-file")?.files[0];
 
     const postRef = doc(db, "posts", postId);
 
     try {
-        let imageUrl = "";
-        const imagePreview = document.getElementById("edit-post-image-preview");
-        
-        if (imagePreview) {
-            imageUrl = imagePreview.src;
-        }
-
-        if (newImageFile) {
-            // Upload new image
-            const storageRef = ref(storage, `images/${newImageFile.name}`);
-            await uploadBytes(storageRef, newImageFile);
-            imageUrl = await getDownloadURL(storageRef);
-        }
-
         // Update post in Firestore
         await updateDoc(postRef, {
             title,
             content,
-            imageUrl
         });
 
         alert("Post updated successfully!");
